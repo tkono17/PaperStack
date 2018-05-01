@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Main-Class: app.control.InspireTool
+
+Name: app/
+Sealed: true
+
+Name: app/view/
+Sealed: true
+
+Name: application/
+Sealed: true
+
+Name: app/control/
+Sealed: true
+
+Name: app/model/
+Sealed: true
+
