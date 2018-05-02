@@ -1,10 +1,17 @@
 package app.control;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 
 //import org.apache.http.HttpEntity;
 //import org.apache.http.HttpResponse;
@@ -15,6 +22,16 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.http.impl.client.CloseableHttpClient;
 
+import app.model.JsonObject;
+import app.model.JsonNumber;
+import app.model.JsonString;
+import app.model.JsonArray;
+import app.model.JsonPair;
+import app.model.CanonicalJsonParser;
+import app.model.AppDataStore;
+import app.model.Article;
+import app.model.JournalRef;
+
 /**
  * @author tkohno
  *
@@ -22,7 +39,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 public class InspireTool {
 
 	public InspireTool() {
-		mBaseDir = "https://inspirehep.net";
+		mSiteURL = "https://inspirehep.net";
 	}
 	
 	private String getURI(String uri) {
@@ -49,7 +66,7 @@ public class InspireTool {
 				Matcher m = re_hlxe.matcher(line);
 				if (m.matches()) {
 					//System.out.println("Match group 1:" + m.group(1));
-					v.add(m.group());
+					v.add(m.group(1));
 				}
 			}
 		}
@@ -68,6 +85,9 @@ public class InspireTool {
 				if (m.matches() ) {
 					//System.out.println("Next URL: " + m.group(1));
 					s = m.group(1);
+					if (s.startsWith("/")) {
+						s = mSiteURL+s;
+					}
 				}
 			}
 		}
@@ -80,15 +100,53 @@ public class InspireTool {
 	//	System.out.println(page0);
 		List<String> hlxelinks = findURLs_hlxe(page0);
 		System.out.println(hlxelinks.size() + " entries found");
+		for (String x: hlxelinks) {
+			System.out.println("HLXE page: " + x);
+		}
 		String nextpage = findURL_next(page0);
+		System.out.println("Next page: " + nextpage);
 	}
-	
+
+	public void test2(String[] args) {
+		JsonObject doc;
+		String fname_json = "test2.json";
+		
+		File file_json = new File("C:\\Users\\tkohno\\Desktop\\test2.json");
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file_json));
+			String line="";
+			CanonicalJsonParser parser = new CanonicalJsonParser();
+			doc = new JsonObject();
+			JsonObject jobj = null;
+			//
+			doc.add("string", new JsonString("ABC"));
+			doc.add("float", new JsonNumber(0.012));
+			doc.add("int", new JsonNumber(345));
+			writer.write(doc.toJson());
+			System.out.println("doc="+doc.toJson());
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int writeDataToJson(AppDataStore ads, String fname) {
+		int ok=0;
+		return ok;
+	}
+	public int readDataFromJson(AppDataStore ads, String fname) {
+		int ok=0;
+		return ok;
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		InspireTool tool = new InspireTool();
-		tool.test1(args);
+		tool.test2(args);
 	}
 
-	private String mBaseDir;
+	private String mSiteURL;
 	
 }
