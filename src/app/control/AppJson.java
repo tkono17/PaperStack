@@ -1,5 +1,6 @@
 package app.control;
 
+import java.util.List;
 import app.model.Article;
 import app.model.JournalRef;
 import app.model.AppDataStore;
@@ -27,6 +28,7 @@ public class AppJson {
 	
 	public AppDataStore jsonToAppData(JsonObject obj) {
 		AppDataStore ads = new AppDataStore();
+		List<Article> articles = ads.articles();
 		return ads;
 	}
 }
