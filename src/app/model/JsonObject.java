@@ -24,6 +24,17 @@ public class JsonObject extends JsonPair {
 		return mMembers;
 	}
 	
+	public JsonValue findMember(String key) {
+		JsonValue y=null;
+		for (JsonPair p: mMembers) {
+			if (p.name() == key) {
+				y = p.value();
+				break;
+			}
+		}
+		return y;
+	}
+	
 	public String toJson() {
 		return toJson("");
 	}

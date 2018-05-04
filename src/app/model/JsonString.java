@@ -23,10 +23,6 @@ public class JsonString extends JsonValue {
 		setString(x);
 	}
 	
-	public String toString() {
-		return value();
-	}
-	
 	public String getString() {
 		return FromJson(mValue);
 	}
@@ -43,6 +39,10 @@ public class JsonString extends JsonValue {
 		return this;
 	}
 
+	public String toString() {
+		return getString();
+	}
+	
 	public String toJson() {
 		return toJson("");
 	}

@@ -5,6 +5,10 @@ import app.model.Article;
 import app.model.JournalRef;
 import app.model.AppDataStore;
 import app.model.JsonObject;
+import app.model.JsonArray;
+import app.model.JsonValue;
+import app.model.JsonNumber;
+import app.model.JsonString;
 
 public class AppJson {
 
@@ -18,6 +22,9 @@ public class AppJson {
 	
 	public Article jsonToArticle(JsonObject obj) {
 		Article a = new Article();
+		a.setTitle(obj.findMember("title").toString());
+		a.setAuthors(obj.findMember("authors").toString());
+		a.setInspireId(obj.findMembers("inspireId").toInteger());
 		return a;
 	}
 	

@@ -21,6 +21,12 @@ public class JsonNumber extends JsonValue {
 	public String toString() {
 		return value().toString();
 	}
+	public int toInteger() {
+		return mValue.intValue();
+	}
+	public double toDouble() {
+		return mValue.doubleValue();
+	}
 	
 	public Number value() {
 		return mValue;
