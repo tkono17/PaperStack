@@ -23,19 +23,44 @@ public class Article {
 		mAuthors = authors;
 		return this;
 	}
+	public String authors() {
+		return mAuthors;
+	}
 	public Article setJournalRef(String x) {
 		mJournalRef = new JournalRef(x);
 		return this;
 	}
+	public JournalRef journalRef() {
+		return mJournalRef;
+	}
 	
+	public Article setDOI(String x) {
+		mDOI = x;
+		return this;
+	}
 	public String DOI() {
 		return mDOI;
+	}
+	public Article setInspireId(int x) {
+		mInspireId = x;
+		return this;
 	}
 	public int inspireId() {
 		return mInspireId;
 	}
+	public Article setArxivId(String x) {
+		mArxivId = x;
+		return this;
+	}
 	public String arxivId() {
 		return mArxivId;
+	}
+	public Article setLatexEU(String x) {
+		mLatexEU = x;
+		return this;
+	}
+	public String latexEU() {
+		return mLatexEU;
 	}
 	
 	private String mTitle;
@@ -44,6 +69,7 @@ public class Article {
 	private String mDOI;
 	private int mInspireId;
 	private String mArxivId;
+	private String mLatexEU;
 	private Date mPublishedDate;
 	private List<ArticleLabel> mLabels;
 	

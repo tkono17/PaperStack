@@ -28,7 +28,7 @@ import app.model.JsonString;
 import app.model.JsonArray;
 import app.model.JsonPair;
 import app.model.CanonicalJsonParser;
-import app.model.AppDataStore;
+import app.model.PaperStackData;
 import app.model.Article;
 import app.model.JournalRef;
 
@@ -132,11 +132,11 @@ public class InspireTool {
 		}
 	}
 
-	public int writeDataToJson(AppDataStore ads, String fname) {
+	public int writeDataToJson(PaperStackData ads, String fname) {
 		int ok=0;
 		return ok;
 	}
-	public int readDataFromJson(AppDataStore ads, String fname) {
+	public int readDataFromJson(PaperStackData ads, String fname) {
 		int ok=0;
 		return ok;
 	}

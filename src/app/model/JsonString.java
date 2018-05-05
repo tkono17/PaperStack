@@ -16,7 +16,7 @@ public class JsonString extends JsonValue {
 	public static final String kUnicodeChar="\\u";
 
 	public JsonString() {
-		mValue = "";
+		mJsonString = "";
 	}
 	
 	public JsonString(String x) {
@@ -24,18 +24,18 @@ public class JsonString extends JsonValue {
 	}
 	
 	public String getString() {
-		return FromJson(mValue);
+		return FromJson(mJsonString);
 	}
 	public JsonString setString(String x) {
-		mValue = ToJson(x);
+		mJsonString = ToJson(x);
 		return this;
 	}
 
-	public String value() {
-		return mValue;
+	protected String jsonString() {
+		return mJsonString;
 	}
-	public JsonString setValue(String x) {
-		mValue = x;
+	protected JsonString setJsonString(String x) {
+		mJsonString = x;
 		return this;
 	}
 
@@ -47,7 +47,7 @@ public class JsonString extends JsonValue {
 		return toJson("");
 	}
 	public String toJson(String prefix) {
-		String s = prefix+"\""+mValue+"\"";
+		String s = prefix+"\""+mJsonString+"\"";
 		return s;
 	}
 	
@@ -133,6 +133,6 @@ public class JsonString extends JsonValue {
 		return y;
 	}
 	
-	private String mValue;
+	private String mJsonString;
 	
 }

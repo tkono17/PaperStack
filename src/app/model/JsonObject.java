@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import app.model.JsonPair;
 
-public class JsonObject extends JsonPair {
+public class JsonObject extends JsonValue {
 
 	public JsonObject() {
 		mMembers = new ArrayList<JsonPair>();
