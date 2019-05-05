@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+#-----------------------------------------------------------------------
+# Paper stack application
+#-----------------------------------------------------------------------
+
+import re
+import urllib.request
+import urllib.response
+
+def reqInspireList(search_string, rg=100, jrec=1):
+    p = search_string
+    url = 'https://inspirehep.net/search?p=%s&sf=earliestdate&rg=%d&jrec=%d' %\
+                                                  (p, rg, jrec)
+    response = urllib.request.urlopen(url)
+    nentries = 0
+    hlxe_pages = []
+    if response.getcode() == 200:
+        re1 = re.compile('(http.*hlxe)">LaTeX\(EU\)')
+        c = str(response.read() )
+        lines = c.split('\\n')
+        for line in lines:
+            mg = re1.search(line)
+            if mg != None:
+                hlxe_pages.append(mg.group(1) )
+                nentries = nentries + 1
+        #print('N lines: %d' % len(lines))
+        #f = open('inspire.txt', 'w')
+        #f.write(c)
+    print('URL: %s' % url)
+    print('  N entries: %d' % nentries)
+    return hlxe_pages
+    
+def reqInspireListAll(search_string):
+    rg = 100
+    jrec = 1
+    tryNext = True
+    hlxe_pages = []
+    while tryNext:
+        pages = reqInspireList(search_string, rg, jrec)
+        if len(pages) == rg:
+            print('Try next jrec=%d' % jrec)
+            tryNext = True
+            jrec = jrec + rg
+        else:
+            tryNext = False
+        hlxe_pages.extend(pages)
+    print('Total number of hlxe entries: %d' % len(hlxe_pages) )
+    #
+    f = open('hlxe_list.txt', 'w')
+    for p in hlxe_pages:
+        f.write('%s\n' % p)
+    f.close()
+    pass
+
+if __name__ == '__main__':
+    reqInspireListAll('find+a+takanori+kono')
+    
