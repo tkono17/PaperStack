@@ -8,7 +8,8 @@
   "scripts": {
     "test": "echo test",
     "test1": "node dest/index.js", 
-    "build": "node_modules/.bin/babel src --out-dir dest"
+    "build": "node_modules/.bin/babel src --out-dir dest", 
+    "build2": "node_modules/.bin/babel src/ch2 --out-dir dest/ch2"
   },
   "author": "Takanori Kono",
   "license": "ISC"
