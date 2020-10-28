@@ -221,7 +221,7 @@ def hlxeFilesToJson():
     
 pass
 if __name__ == '__main__':
-    #reqInspireListAll('find+a+takanori+kono')
+    reqInspireListAll('find+a+takanori+kono')
     reqHlxePages()
     #hlxeFilesToJson()
     
